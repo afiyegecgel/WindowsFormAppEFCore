@@ -17,6 +17,7 @@ namespace WinFormAppEFCore
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new store());
+
         }
     }
 }
