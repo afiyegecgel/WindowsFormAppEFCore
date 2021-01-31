@@ -45,14 +45,14 @@ namespace WinFormAppEFCore.Forms
         private void btnCategoryAdd_Click(object sender, EventArgs e)
         {
             Categories category = new Categories();
-
-            if (string.IsNullOrEmpty(txtCategoryName.Text))
+            category.Name = txtCategoryName.Text;
+            if (string.IsNullOrEmpty(category.Name))
             {
                 MessageBox.Show("Please fill the required fields", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                var existingCategory = context.Categories.Where(x => x.Name == txtCategoryName.Text);
+                Categories existingCategory = context.Categories.SingleOrDefault(x => x.Name == category.Name);
 
 
                 if (existingCategory!=null)
@@ -62,7 +62,7 @@ namespace WinFormAppEFCore.Forms
                 }
                 else
                 {
-                    category.Name = txtCategoryName.Text;
+                   
                     int returnvalue = categoryServices.AddCategory(category);
 
                     if (returnvalue > 0)
